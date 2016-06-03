@@ -1,32 +1,96 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Juicecenter by poonam2310</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Juicecenter</h1>
-      <h2 class="project-tagline">juice center </h2>
-      <a href="https://github.com/poonam2310/Juicecenter" class="btn">View on GitHub</a>
-    </section>
+<html>
+    <head>
+        <title>ngForm</title>
+        <meta charset="UTF-8">
+        <link href="dest/output.css" rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .error{
+                color:red;
+            }
+            input.ng-invalid{
+                border-left: solid 6px red;
+            }
+            input.ng-valid{
+                border-left: solid 6px green;
+            }
+            .homeimage{
+                position: absolute;
+                left: 0px;
+                top: 80px;;
+                z-index: -1;
+            }
+            .logo{
+                color:#ff8700;
+            }
+            .header {
+                color: #36A0FF;
+                font-size: 27px;
+                padding: 10px;
+            }
 
-    <section class="main-content">
-      <h3>
-<a id="welcome-to-juicecenter" class="anchor" href="#welcome-to-juicecenter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to JuiceCenter.</h3>
+            .bigicon {
+                font-size: 35px;
+                color: #36A0FF;
+            }
+            .pagination {
+                display: inline-block;
+                padding-left: 0;
+                margin: 20px 0;
+                border-radius: 4px;
+                float: right;
+            }
+            .button{
+                padding-left: 600px;
+            }
+            .color{
+                color:#ff8700;
+            }
+            .welcome{
+                font-size: 77px;
+            }
+        </style>
+    </head>
+    <body>
+        <div ng-app="myApp">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/poonam2310/Juicecenter">Juicecenter</a> is maintained by <a href="https://github.com/poonam2310">poonam2310</a>.</span>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
 
-      </footer>
+                        </button>
+                        <a class="navbar-brand" href="#"><h4 class="logo">Fresh Juice </h4></a>
+                    </div>
 
-    </section>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#/home">Home</a></li>
+                            <li><a href="#/search">Search</a></li>
+                            <li><a href="#/aboutus">About Us</a></li>
+                            <li><a href="#/contact">Contact Us</a></li>
+                            <li><a href="#/signup">SignUp</a></li>
+                            <li><a href="#/login">Login</a></li>
 
-  
-  </body>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <data-ui-view> </data-ui-view>
+                </div>
+            </div>
+
+
+        </div>
+        <script src="dest/output.js" type="text/javascript"></script>
+
+    </body>
 </html>
