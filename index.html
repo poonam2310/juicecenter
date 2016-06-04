@@ -23,16 +23,6 @@
             .logo{
                 color:#ff8700;
             }
-            .header {
-                color: #36A0FF;
-                font-size: 27px;
-                padding: 10px;
-            }
-
-            .bigicon {
-                font-size: 35px;
-                color: #36A0FF;
-            }
             .pagination {
                 display: inline-block;
                 padding-left: 0;
@@ -41,7 +31,7 @@
                 float: right;
             }
             .button{
-                padding-left: 600px;
+                padding-left: 562px;
             }
             .color{
                 color:#ff8700;
@@ -49,10 +39,56 @@
             .welcome{
                 font-size: 77px;
             }
+
+            .list-group li{border:none}
+            .list-group {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
         </style>
+        <script>
+            function share() {
+                
+            var href = "http://webonerds.com"; 
+              if(window.location.hostname !== 'localhost')
+              {
+                  href = window.location.href;
+              }
+                FB.ui(
+                    {
+                        method: 'share',
+                        href:href
+                    }, function (response) {
+                      
+                      console.log(response);
+                      
+                    });
+            }
+        </script>
     </head>
-    <body>
-        <div ng-app="myApp">
+    <body ng-app="myApp">
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '238206099894246',
+                    xfbml: true,
+                    version: 'v2.6'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <div>
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -82,7 +118,7 @@
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
-            <div class="container-fluid">
+            <div onclick="share();" class="container">
                 <div class="row">
                     <data-ui-view> </data-ui-view>
                 </div>

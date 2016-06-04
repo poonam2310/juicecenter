@@ -1,18 +1,17 @@
-<div class="container-fluid">
+
     <div class="row">
-        <div class="col-md-4 ">
+        <div class="col-md-2 ">
 
             <div class="form-group">
                 <lable class="control-label"><h4>Search</h4></lable> 
-                <input type="text" class="form-control input-lg" ng-model="test">
+                <input type="text" class="form-control input-lg" ng-model="test" placeholder="Search by name">
             </div>
             <div>
-                <img src="images/juice_splash.png" alt=""/>
 
             </div>
         </div>
         <div class="col-md-8">
-            <ul class="list-group" ng-repeat="j in juice|filter:test">
+            <ul class="list-group" ng-repeat="j in juices|filter:{name:test}">
                 <li class="list-group-item ">Juice Type: {{j.id}}</li>
                 <li class="list-group-item ">Juice Type: {{j.type}}</li>
                 <li class="list-group-item ">Juice Name: {{j.name}}</li>
@@ -20,7 +19,7 @@
                 <li class="list-group-item ">Juice Price : {{j.price}}</li>
                 <li class="list-group-item ">
                     <p class="button">
-                        <a href="#/juicedetails">  <button type="button" id="{{j.id}}" ng-click="accessValue(j.id)" class="btn btn-primary btn-xs">Details</button></a>
+                        <a href="#/juicedetails/{{j.id}}">  <button type="button"  class="btn btn-primary btn-xs">Details</button></a>
                         <button type="button" class="btn btn-info btn-xs">Order</button>
                         <button type="button" class="btn btn-success btn-xs">Payment</button>
                     </p>
@@ -52,4 +51,3 @@
             </nav>
         </div>
     </div>
-</div>

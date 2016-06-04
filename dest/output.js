@@ -4894,7 +4894,7 @@ var app = angular.module("myApp", ['ui.router']);
 app.config(function ($stateProvider, $urlRouterProvider) {
     //
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/login");
+    $urlRouterProvider.otherwise("/home");
     //
     // Now set up the states
     $stateProvider
@@ -4911,7 +4911,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             .state('home', {
                 url: "/home",
                 templateUrl: "templates/home.html",
-                controller:"signupCtrl"
+                controller:"homeCtrl"
             })
             .state('search', {
                 url: "/search",
@@ -4924,7 +4924,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 controller:"signupCtrl"
             })
             .state('juicedetails', {
-                url: "/juicedetails",
+                url: "/juicedetails/:juice_id",
                 templateUrl: "templates/juicedetails.html",
                 controller:"searchCtrl"
             })
@@ -4935,6 +4935,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             });
 });
 
+
+
+
+app.controller("homeCtrl",['$scope',function($scope){
+   // $scope.title="Home";
+}]);
+
+
+
+app.controller("loginCtrl",['$scope','$rootScope',function($scope,$rootScope){
+    $scope.title="Login";
+    
+    $scope.user={};
+    
+    $rootScope.user = {}; 
+    
+    
+}]);
 
 
 app.controller("myCtrl", ['$scope',function ($scope) {
@@ -4956,17 +4974,28 @@ app.controller("myCtrl", ['$scope',function ($scope) {
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-app.controller("searchCtrl",['$scope',function($scope){
-        $scope.juice=[
+app.controller("searchCtrl",['$scope','$state',function($scope,$state){
+        $scope.juices =[
             {id:'0',type:'shake',name:'apple',content:{milk:'30%',sugar:'10%',apple:'60%'},price:'20'},
             {id:'1',type:'orange',name:'orange',content:{milk:'30%',sugar:'10%',apple:'60%'},price:'20'},
             {id:'2',type:'pineapple',name:'pineapple',content:{milk:'30%',sugar:'10%',apple:'60%'},price:'20'},
             {id:'3',type:'mango',name:'mango',content:{milk:'30%',sugar:'10%',apple:'60%'},price:'20'}
         ];
          var a;
-        $scope.accessValue=function(id){
-          console.log(this.juice[id]);
+         
+         
+      
+           $scope.selecteJuice = $scope.juices[$state.params.juice_id];
+           
+        $scope.accessValue = function(id){
+             console.log($scope.selecteJuice);
+  
+            
         };
+        
+        $scope.$watch("selecteJuice",function(n,o){
+           $scope.selecteJuice = n;
+        });
 }]);
 
 
@@ -4976,7 +5005,7 @@ app.controller("searchCtrl",['$scope',function($scope){
  * and open the template in the editor.
  */
 app.controller("signupCtrl",['$scope',function($scope){
-    $scope.title="form";
+    // $scope.title="Signup";
 }]);
 
 
