@@ -1,109 +1,15 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
 
-        <div class="row">
-            <div class="col-md-6" ng-controller="loginCtrl">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h4>{{title}} Form</h4></div>
-
-                    <div class="panel-body">
-                        <form name="myForm" ng-submit="login(myForm)" novalidate>
-
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" ng-model="user.email" class="form-control" name="email" placeholder="Enter email" required>
-                                <span class="error" ng-if="myForm.email.$touched || myForm.$submitted">
-                                    <span ng-if="myForm.email.$error.email">
-                                        Please Enter Valid E-Mail
-                                    </span>
-                                    <span ng-if="myForm.email.$error.required">
-                                        Please Enter  E-Mail
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <input type="password" ng-model="user.password" class="form-control" name="password" placeholder="Enter password" ng-minlength="5" ng-maxlength="10" required>
-                                <span class="error" ng-if="myForm.password.$touched || myForm.$submitted">
-                                    <span ng-if="myForm.password.$error.required">
-                                        Please enter password
-                                    </span>
-                                    <span ng-if="myForm.password.$error.minlength">
-                                        Please enter minimum 5 char
-                                    </span>
-                                    <span ng-if="myForm.password.$error.maxlength">
-                                        Please enter maximum 10 char
-                                    </span>
-                                </span>
-                            </div>
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
+<div>
+    <div style="height: 305px">
+        <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                    <h4>Slide {{slide.id}}</h4>
+                    <p>{{slide.text}}</p>
                 </div>
-            </div>
+            </uib-slide>
+        </uib-carousel>
+    </div>
 
-
-            <div class="col-md-6 " ng-controller="signupCtrl">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h4>{{title}} Form</h4></div>
-
-                    <div class="panel-body">
-                        <form name="myForm" ng-submit="login(myForm)" novalidate>
-                            <div class="form-group">
-                                <label for="email">Name:</label>
-                                <input type="text" ng-model="user.name" class="form-control" name="name" placeholder="Enter email" required>
-                                <span class="error" ng-if="myForm.name.$touched || myForm.$submitted">
-                                    <span ng-if="myForm.name.$error.required">
-                                        Please Enter  Name
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" ng-model="user.email" class="form-control" name="email" placeholder="Enter email" required>
-                                <span class="error" ng-if="myForm.email.$touched || myForm.$submitted">
-                                    <span ng-if="myForm.email.$error.email">
-                                        Please Enter Valid E-Mail
-                                    </span>
-                                    <span ng-if="myForm.email.$error.required">
-                                        Please Enter  E-Mail
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <input type="password" ng-model="user.password" class="form-control" name="password" placeholder="Enter password" ng-minlength="5" ng-maxlength="10" required>
-                                <span class="error" ng-if="myForm.password.$touched || myForm.$submitted">
-                                    <span ng-if="myForm.password.$error.required">
-                                        Please enter password
-                                    </span>
-                                    <span ng-if="myForm.password.$error.minlength">
-                                        Please enter minimum 5 char
-                                    </span>
-                                    <span ng-if="myForm.password.$error.maxlength">
-                                        Please enter maximum 10 char
-                                    </span>
-                                </span>
-                            </div>
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-    </body>
-</html>
+</div> 

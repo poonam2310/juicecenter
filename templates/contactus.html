@@ -1,49 +1,67 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                <form class="form-horizontal" method="post">
-                    <div class="form-group">
-                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                        <div class="col-md-8">
-                            <input id="fname" name="name" type="text" placeholder="First Name" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                        <div class="col-md-8">
-                            <input id="lname" name="name" type="text" placeholder="Last Name" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
-                        <div class="col-md-8">
-                            <input id="email" name="email" type="text" placeholder="Email Address" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
-                        <div class="col-md-8">
-                            <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
-                        <div class="col-md-8">
-                            <textarea class="form-control" id="message" name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                        </div>
-                    </div>
-                </form>
+<div class="row">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+        <form class="form-horizontal" name="contactfrm" ng-submit="contact(contactfrm)" novalidate>
+            <div class="form-group">
+                <input  name="first_name" ng-model="contact.firstname" type="text" placeholder="First Name" class="form-control" required>
+                <span class="error" ng-if="contactfrm.first_name.$touched || contactfrm.$submitted">
+                    <span ng-if="contactfrm.first_name.$error.required">
+                        Please Enter Name
+                    </span>
+                </span>
             </div>
-        </div>
+            <div class="form-group">
+                <input  name="last_name" ng-model="contact.lastname" type="text" placeholder="Last Name" class="form-control" required>
+                <span class="error" ng-if="contactfrm.last_name.$touched || contactfrm.$submitted">
+                    <span ng-if="contactfrm.last_name.$error.required">
+                        Please Enter Last Name
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="email" ng-model="contact.email" placeholder="Email Address" class="form-control" required>
+                <span class="error" ng-if="contactfrm.email.$touched || contactfrm.$submitted">
+                    <span ng-if="contactfrm.email.$error.required">
+                        Please Enter E-mail 
+                    </span>
+                    <span ng-if="contactfrm.email.$error.email">
+                        Please Enter Valid E-Mail
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <input type="number" name="phone" ng-model="contact.phone" placeholder="Phone" class="form-control" required  maxlength="10">
+                <span class="error" ng-if="contactfrm.phone.$touched || contactfrm.$submitted">
+                    <span ng-if="contactfrm.phone.$error.required">
+                        Please Enter Phone Number 
+                    </span>
+                    <span ng-if="contactfrm.phone.$error.number">
+                        Please Enter Valid 
+                    </span>
+                    <span ng-if="contactfrm.phone.$error.maxlength">
+                        Please enter maximum 10 digit
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" ng-model="contact.message" required name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7"></textarea>
+                <span class="error" ng-if="contactfrm.message.$touched || contactfrm.$submitted">
+                    <span ng-if="contactfrm.message.$error.required">
+                        Please Enter Meaningful Message
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
+
+
 

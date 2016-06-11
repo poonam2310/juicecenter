@@ -1,26 +1,33 @@
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Login Form</h4></div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <!--        <button class="btn btn-success" ng-click="getdata();">data</button>
+                <ul>
+                    <li ng-repeat="d in data">
+                        {{d.brand}}
+                    </li>
+                </ul>-->
+        <span ng-bind="error">
+            <uib-alert>Enter Correct Username & Password</uib-alert>
+        </span>
 
-                 <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h4>Login Form</h4></div>
+
+            <div class="panel-body">
                 <form name="myForm" ng-submit="login(myForm)" novalidate>
 
                     <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" ng-model="user.email" class="form-control" name="email" placeholder="Enter email" required>
-                        <span class="error" ng-if="myForm.email.$touched || myForm.$submitted">
-                            <span ng-if="myForm.email.$error.email">
-                                Please Enter Valid E-Mail
-                            </span>
-                            <span ng-if="myForm.email.$error.required">
-                                Please Enter  E-Mail
+                        <label>User Name:</label>
+                        <input type="text" ng-model="user.name" class="form-control" name="name" placeholder="Enter Name" required>
+                        <span class="error" ng-if="myForm.name.$touched || myForm.$submitted">
+                            <span ng-if="myForm.name.$error.required">
+                                Please Enter  Name
                             </span>
                         </span>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" ng-model="user.password" class="form-control" name="password" placeholder="Enter password" ng-minlength="5" ng-maxlength="10" required>
+                        <input type="password" ng-model="user.password" class="form-control" name="password" placeholder="Enter password" ng-minlength="4" ng-maxlength="10" required>
                         <span class="error" ng-if="myForm.password.$touched || myForm.$submitted">
                             <span ng-if="myForm.password.$error.required">
                                 Please enter password
@@ -35,7 +42,9 @@
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
-                 </div>
-                </div>
+
             </div>
+
         </div>
+    </div>
+</div>

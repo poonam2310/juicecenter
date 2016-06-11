@@ -5,10 +5,18 @@
             <img src="../images/Orange-vs-Orange-Juice.jpg" class="img-thumbnail" alt="" height="400" width="380">
             <img src="../images/fresh-fruit-juice-list.jpg" class="img-thumbnail" alt="" height="400" width="380">
         </div>
+        <div class="form-group"></div>
         <div>
-
-            {{selecteJuice}}
+            <ul class="list-group">
+         
+                <li class="list-group-item ">Juice Type: {{selecteJuice.name}}</li>
+                <li class="list-group-item ">Juice Name: {{selecteJuice.type}}</li>
+                <li class="list-group-item ">Juice Content:  Milk:{{selecteJuice.content.milk}}, Sugar:{{selecteJuice.content.sugar}}, Apple:{{selecteJuice.content.apple}}</li>
+                
+                <li class="list-group-item ">Juice Price : {{selecteJuice.price}}</li>
+            </ul>
+                <!--            {{selecteJuice}}-->
         </div>
-       
+
     </div>
 </div>
