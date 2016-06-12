@@ -12267,6 +12267,11 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                 templateUrl: "templates/signup.html",
                 controller: "signupCtrl"
             })
+            .state('cart', {
+                url: "/cart",
+                templateUrl: "templates/cart.html",
+                controller: "searchCtrl"
+            })
             .state('addjuice', {
                 url: "/addjuice",
                 templateUrl: "templates/addjuice.html",
@@ -12342,6 +12347,7 @@ app.controller("addjuiceCtrl", ['$scope', 'LocalDb', '$timeout', function ($scop
         };
 
     }]);
+
 
 
 
@@ -12478,7 +12484,7 @@ app.controller("mainCtrl", ['$scope', function ($scope) {
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-app.controller("searchCtrl", ['$scope', '$state', 'LocalDb', '$timeout', function ($scope, $state, LocalDb, $timeout) {
+app.controller("searchCtrl", ['$scope', '$state', 'LocalDb', '$timeout', '$rootScope', 'localStorageService', function ($scope, $state, LocalDb, $timeout, $rootScope, localStorageService) {
         $scope.selecteJuice = {};
         $scope.juices = [];
         $scope.getAllItems = function ()
@@ -12502,7 +12508,22 @@ app.controller("searchCtrl", ['$scope', '$state', 'LocalDb', '$timeout', functio
                         cursor.continue();
                     }
 
-        $scope.totleCount = $scope.juices.length;
+                    $scope.totleCount = $scope.juices.length;
+                    //pagination
+                    $scope.itemPerPage = 4;
+                    $scope.currentPage = 1;
+                    $scope.offset = 0;
+                    $scope.offset = (($scope.$currentPage - 1) * $scope.itemPerPage);
+                    $scope.itemPerPageChange = function () {
+                        $scope.buttonlist = new Array(Math.ceil($scope.totleCount / $scope.itemPerPage));
+                    };
+                    $scope.changePage = function (page)
+                    {
+
+                        $scope.offset = $scope.itemPerPage * (page - 1);
+                        $scope.currentPage = page;
+
+                    };
 
                 };
             });
@@ -12510,7 +12531,7 @@ app.controller("searchCtrl", ['$scope', '$state', 'LocalDb', '$timeout', functio
 
 
         $scope.getAllItems();
-
+//state param
         $scope.selecteJuice = $scope.juices[$state.params.juice_id];
         $scope.accessValue = function (id) {
             console.log($scope.selecteJuice);
@@ -12522,20 +12543,37 @@ app.controller("searchCtrl", ['$scope', '$state', 'LocalDb', '$timeout', functio
             $scope.selecteJuice = n;
         });
 
-        $scope.itemPerPage = 4;
-        $scope.currentPage = 1;
-        $scope.offset = 0;
-        $scope.offset = (($scope.$currentPage - 1) * $scope.itemPerPage);
-        $scope.itemPerPageChange = function () {
-            $scope.buttonlist = new Array(Math.ceil($scope.totleCount / $scope.itemPerPage));
-        };
-        $scope.changePage = function (page)
-        {
+        //add to cart
+        $scope.tempCartItem = [];
+        $scope.addToCart = function (item) {
 
-            $scope.offset= $scope.itemPerPage*(page-1);
-            $scope.currentPage=page;
+            if (localStorageService.get('cart_item') !== null) {
+                $scope.quantity = 1;
+                $scope.tempCartItem = JSON.parse(localStorageService.get('cart_item'));
+            } else {
+                $scope.tempCartItem = [];
+            }
 
+            $scope.tempCartItem.push(item);
+
+            localStorageService.set("cart_item", JSON.stringify($scope.tempCartItem));
+            $rootScope.cartItems = JSON.parse(localStorageService.get('cart_item'));
         };
+
+        $scope.removeFromCart = function (index) {
+            $rootScope.cartItems.splice(index, 1);
+            localStorageService.set('cart_item', JSON.stringify($scope.cartItems));
+            $rootScope.cartItems = JSON.parse(localStorageService.get('cart_item'));
+        };
+
+        $scope.calculate = function (p, q) {
+            if (q >= 0) {
+                return p * q;
+            } else {
+                return 0;
+            }
+        };
+
     }]);
 
 app.controller("signupCtrl",['$scope','LocalDb','$state','$timeout',function($scope,LocalDb,$state,$timeout){
@@ -12619,6 +12657,14 @@ app.controller("userCtrl", ['$scope', '$rootScope', 'LocalDb', function ($scope,
 
 
     }]);
+app.directive("cartBadge", function () {
+    return{
+        templateUrl: "../templates/cartbadge.html",
+        controller: function ($scope, $rootScope, localStorageService) {
+            $rootScope.cartItems = JSON.parse(localStorageService.get('cart_items'));
+        }
+    };
+});
 app.service("heroService", function () {
     return{
         getAllHeros: function () {

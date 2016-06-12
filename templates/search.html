@@ -9,8 +9,6 @@
         </div>
 
     </div>
-    {{itemPerPageChange}}
-    {{pages}}
     <select ng-model="itemPerPage" ng-change="itemPerPageChange()">
         <option ng-selected="true" value="5">5</option>
         <option value="10">10</option>
@@ -18,16 +16,16 @@
         <option value="20">20</option>
     </select>
     <div class="col-md-8"   >
-        <ul class="list-group" ng-repeat="j in juices|filter:{name:test}|limitTo:itemPerPage:offset">
-            <li class="list-group-item ">Juice Id: {{j.id}}</li>
-            <li class="list-group-item ">Juice Type: {{j.type}}</li>
-            <li class="list-group-item ">Juice Name: {{j.name}}</li>
-            <li class="list-group-item ">Juice Content:  Milk:{{j.content.milk}}, Sugar:{{j.content.sugar}}, Apple:{{j.content.apple}}</li>
-            <li class="list-group-item ">Juice Price : {{j.price}}</li>
+        <ul class="list-group" ng-repeat="juice in juices|filter:{name:test}|limitTo:itemPerPage:offset">
+            <li class="list-group-item ">Juice Id: {{juice.id}}</li>
+            <li class="list-group-item ">Juice Type: {{juice.type}}</li>
+            <li class="list-group-item ">Juice Name: {{juice.name}}</li>
+            <li class="list-group-item ">Juice Content:  Milk:{{juice.content.milk}}, Sugar:{{juice.content.sugar}}, Apple:{{juice.content.apple}}</li>
+            <li class="list-group-item ">Juice Price : {{juice.price}}</li>
             <li class="list-group-item ">
                 <p class="button">
-                    <a href="#/juicedetails/{{j.id}}">  <button type="button"  class="btn btn-primary btn-xs">Details</button></a>
-                    <button type="button" class="btn btn-info btn-xs">Order</button>
+                    <a href="#/juicedetails/{{juice.id}}">  <button type="button"  class="btn btn-primary btn-xs">Details</button></a>
+                    <button type="button" class="btn btn-info btn-xs" ng-click="addToCart(juice)">Order</button>
                     <button type="button" class="btn btn-success btn-xs">Payment</button>
                 </p>
             </li>
