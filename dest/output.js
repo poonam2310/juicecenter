@@ -12659,7 +12659,7 @@ app.controller("userCtrl", ['$scope', '$rootScope', 'LocalDb', function ($scope,
     }]);
 app.directive("cartBadge", function () {
     return{
-        templateUrl: "templates/cartbadge.html",
+        templateUrl: "/templates/cartbadge.html",
         controller: function ($scope, $rootScope, localStorageService) {
             $rootScope.cartItems = JSON.parse(localStorageService.get('cart_items'));
         }
